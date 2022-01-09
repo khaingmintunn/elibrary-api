@@ -1,0 +1,496 @@
+{
+  "info": {
+    "title": "Elibrary-API",
+    "version": "1.0.0",
+    "license": {
+      "name": "MIT"
+    },
+    "description": "Elibrary server"
+  },
+  "basePath": "/v1",
+  "securityDefinitions": {
+    "apiKey": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization"
+    }
+  },
+  "paths": {
+    "/signup": {
+      "post": {
+        "summary": "/signup",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "body parameters",
+            "required": true,
+            "schema": {
+              "properties": {
+                "name": { "type": "string" },
+                "email": { "type": "string" },
+                "password": { "type": "string" },
+                "dob": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "gender": {
+                  "type": "string",
+                  "enum": ["MALE", "FEMALE"]
+                },
+                "address": { "type": "string" },
+                "phone": { "type": "string" },
+                "avatar": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Auth"]
+      }
+    },
+    "/signup-confirm": {
+      "post": {
+        "summary": "/signup-confirm",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "body parameters",
+            "required": true,
+            "schema": {
+              "properties": {
+                "token_id": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Auth"]
+      }
+    },
+    "/forget-password": {
+      "post": {
+        "summary": "/forget-password",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "body parameters",
+            "required": true,
+            "schema": {
+              "properties": {
+                "email": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Auth"]
+      }
+    },
+    "/reset-password": {
+      "post": {
+        "summary": "/reset-password",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "body parameters",
+            "required": true,
+            "schema": {
+              "properties": {
+                "token_id": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "confirm_password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Auth"]
+      }
+    },
+    "/login": {
+      "post": {
+        "summary": "/login",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "body parameters",
+            "required": true,
+            "schema": {
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "properties": {
+                "token": {
+                  "type": "string"
+                },
+                "user": {
+                  "$ref": "#/definitions/User"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Auth"]
+      }
+    },
+    "/logout": {
+      "post": {
+        "summary": "/logout",
+        "consumes": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Auth"]
+      }
+    },
+    "/users": {
+      "get": {
+        "summary": "/users",
+        "consumes": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["User"]
+      }
+    },
+    "/user/{user_id}": {
+      "get": {
+        "summary": "/user/{user_id}",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {},
+        "tags": ["User"]
+      },
+      "delete": {
+        "summary": "/user/{user_id}",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {},
+        "tags": ["User"]
+      }
+    },
+    "/me": {
+      "get": {
+        "summary": "/me",
+        "consumes": ["application/json"],
+        "parameters": [],
+        "responses": {},
+        "tags": ["User"]
+      },
+      "put": {
+        "summary": "/me",
+        "consumes": ["application/json"],
+        "parameters": [],
+        "responses": {},
+        "tags": ["User"]
+      }
+    },
+    "/user": {
+      "post": {
+        "summary": "/user",
+        "consumes": ["application/json"],
+        "parameters": [],
+        "responses": {},
+        "tags": ["User"]
+      }
+    },
+    "/user/email": {
+      "put": {
+        "summary": "/user/email",
+        "consumes": ["application/json"],
+        "parameters": [],
+        "responses": {},
+        "tags": ["User"]
+      }
+    },
+    "/user/email-confirm": {
+      "post": {
+        "summary": "/user/email-confirm",
+        "consumes": ["application/json"],
+        "parameters": [],
+        "responses": {},
+        "tags": ["User"]
+      }
+    },
+    "/user/password": {
+      "put": {
+        "summary": "/user/password",
+        "consumes": ["application/json"],
+        "parameters": [],
+        "responses": {},
+        "tags": ["User"]
+      }
+    },
+    "/user/{user_id}/role": {
+      "put": {
+        "summary": "/user/{user_id}/role",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {},
+        "tags": ["User"]
+      }
+    },
+    "/user/{user_id}/suspend": {
+      "put": {
+        "summary": "/user/{user_id}/suspend",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {},
+        "tags": ["User"]
+      }
+    },
+    "/category": {
+      "post": {
+        "summary": "/category",
+        "consumes": ["application/json"],
+        "parameters": [],
+        "responses": {},
+        "tags": ["Category"]
+      }
+    },
+    "/category/{category_id}": {
+      "get": {
+        "summary": "/category/{category_id}",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "name": "category_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {},
+        "tags": ["Category"]
+      },
+      "put": {
+        "summary": "/category/{category_id}",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "name": "category_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {},
+        "tags": ["Category"]
+      },
+      "delete": {
+        "summary": "/category/{category_id}",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "name": "category_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {},
+        "tags": ["Category"]
+      }
+    },
+    "/categories": {
+      "get": {
+        "summary": "/categories",
+        "consumes": ["application/json"],
+        "parameters": [],
+        "responses": {},
+        "tags": ["Category"]
+      }
+    }
+  },
+  "swagger": "2.0",
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Authentication process"
+    },
+    {
+      "name": "User",
+      "description": "User process"
+    },
+    {
+      "name": "Category",
+      "description": "Category process"
+    }
+  ],
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "user_id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "dob": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Date of birth"
+        },
+        "gender": {
+          "type": "string",
+          "description": "Gender of user",
+          "enum": ["MALE", "FEMALE"]
+        },
+        "address": { "type": "string" },
+        "phone": { "type": "string" },
+        "avatar": { "type": "string" },
+        "auth_status": {
+          "type": "string",
+          "description": "Gender of user",
+          "enum": ["NO_AUTH", "AUTHED", "SUSPENDED"]
+        },
+        "user_type": {
+          "type": "string",
+          "description": "role of user",
+          "enum": ["SUPER_ADMIN", "ADMIN", "PREMIUM_USER", "USER"]
+        },
+        "created": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Created at"
+        },
+        "updated": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Updated at"
+        }
+      },
+      "xml": { "name": "User" }
+    },
+    "Category": {
+      "type": "object",
+      "properties": {
+        "category_id": { "type": "string" },
+        "name": { "type": "string" },
+        "user_id": { "type": "string" },
+        "created": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Created at"
+        },
+        "updated": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Updated at"
+        }
+      },
+      "xml": { "name": "Category" }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+[
+  {
+    "category_id": "3594863d-f83d-4676-88d0-9dc8bcd02345",
+    "name": "Education",
+    "user_id": "7ff38bff-fa3e-412c-9187-e76b4d4a1a17"
+  },
+  {
+    "category_id": "3594863d-f43d-4676-88f0-9dc4gfd02345",
+    "name": "Text Book",
+    "user_id": "7ff38bff-fa3e-412c-9187-e76b4d4a1a17"
+  },
+  {
+    "category_id": "3594863d-f84d-4566-88d0-9df465f02345",
+    "name": "Classic Book",
+    "user_id": "7ff38bff-fa3e-412c-9187-e76b4d4a1a17"
+  },
+  {
+    "category_id": "3565863d-h53d-4756-87f0-9dk9fcd02345",
+    "name": "Romance",
+    "user_id": "7ff38bff-fa3e-412c-9187-e76b4d4a1a17"
+  },
+  {
+    "category_id": "3594f63d-l83d-3576-84h0-9dc8puj02345",
+    "name": "Short Story",
+    "user_id": "7ff38bff-fa3e-412c-9187-e76b4d4a1a17"
+  },
+  {
+    "category_id": "3595346d-f83d-4676-88k0-9dc8uee02345",
+    "name": "Technology",
+    "user_id": "7ff38bff-fa3e-412c-9187-e76b4d4a1a17"
+  },
+  {
+    "category_id": "3077663d-r78d-4806-84h0-9dc9fur02345",
+    "name": "Programming",
+    "user_id": "7ff38bff-fa3e-412c-9187-e76b4d4a1a17"
+  }
+]

@@ -18,4 +18,4 @@ yarn-error.log*
 .env
 
 # Static files
-/import/statics
+# /import/statics

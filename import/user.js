@@ -32,7 +32,7 @@ class UserImport {
   }
 
   static async userPayload(params) {
-    const hashed_password = await Util.hashPassword(params.password)
+    const hashed_password = await Util.hashPassword(process.env.USER_PASSWORD)
 
     return {
       user_id: uuidv4(),

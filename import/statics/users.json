@@ -1,0 +1,32 @@
+[
+    {
+        "user_id": "6185b6e2-11aa-495b-82da-1357c4b556ea",
+        "name": "Super Admin",
+        "email": "superadmin@elibrary.com",
+        "password": "$Up3r@dm!n31!br@rY",
+        "dob": 1640287318,
+        "gender": "MALE",
+        "address": "Yangon",
+        "phone": "01709977",
+        "avatar": "https://img.icons8.com/ios/50/000000/test-account.png",
+        "auth_status": "AUTHED",
+        "user_type": "SUPER_ADMIN",
+        "created": 1641287234,
+        "updated": 1641447316
+    },
+    {
+        "user_id": "80047a8e-fda6-4ec0-b281-ee2518e1090f",
+        "name": "Admin",
+        "email": "admin@elibrary.com",
+        "password": "@dm!n31!br@rY",
+        "dob": 1640287318,
+        "gender": "MALE",
+        "address": "London",
+        "phone": "01709977",
+        "avatar": "https://img.icons8.com/ios/50/000000/test-account.png",
+        "auth_status": "AUTHED",
+        "user_type": "ADMIN",
+        "created": 1641287234,
+        "updated": 1641447316
+    }
+]

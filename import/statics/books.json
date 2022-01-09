@@ -1,0 +1,32 @@
+[
+  {
+    "book_id": "b1a74a9f-5db9-4c5f-88c3-03903b4eecf9",
+    "title": "Greate 11 Text Book",
+    "author": "Goverment",
+    "description": "Text Book",
+    "category_id": "3594863d-f43d-4676-88f0-9dc4gfd02345",
+    "rate": 5,
+    "publish_date": 1641712101,
+    "url": "http://www.grade11.edu/g11.pdf",
+    "is_available": true,
+    "status": "PUBLISH",
+    "user_id": "7ff38bff-fa3e-412c-9187-e76b4d4a1a17",
+    "created": 1641712101,
+    "updated": 1641712101
+  },
+  {
+    "book_id": "b1a74a9f-5db9-4c5f-88c3-03934h4eecf9",
+    "title": "Bootstrap 5",
+    "author": "Ei Maung",
+    "description": "Web Design",
+    "category_id": "3077663d-r78d-4806-84h0-9dc9fur02345",
+    "rate": 5,
+    "publish_date": 1641712101,
+    "url": "https://github.com/eimg/Books-by-Ei-Maung/raw/main/Bootstrap5-book-by-Ei-Maung.pdf",
+    "is_available": true,
+    "status": "PUBLISH",
+    "user_id": "7ff38bff-fa3e-412c-9187-e76b4d4a1a17",
+    "created": 1641712101,
+    "updated": 1641712101
+  }
+]

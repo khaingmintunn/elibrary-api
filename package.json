@@ -8,7 +8,7 @@
   "scripts": {
     "start": "nodemon server.js",
     "format": "prettier --write **/*.js",
-    "postinstall": "nodemon import/index.js"
+    "import": "nodemon import/index.js"
   },
   "dependencies": {
     "bcrypt-nodejs": "^0.0.3",
@@ -26,7 +26,9 @@
     "uuid": "^8.3.2",
     "validator": "^13.7.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "husky": "^7.0.4"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/khaingmintunn/elibrary-api.git"
@@ -34,5 +36,10 @@
   "bugs": {
     "url": "https://github.com/khaingmintunn/elibrary-api/issues"
   },
-  "homepage": "https://github.com/khaingmintunn/elibrary-api#readme"
+  "homepage": "https://github.com/khaingmintunn/elibrary-api#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run import"
+    }
+  }
 }

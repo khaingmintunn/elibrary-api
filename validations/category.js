@@ -6,7 +6,6 @@ class CategoryValidation {
   static create(params) {
     const messages = [
       validator.isRequired('name', params.name),
-      ,
       validator.validateLength('name', params.name, 2, 100),
     ]
     const errors = messages.filter((message) => {

@@ -3,6 +3,7 @@
 const uuidv4 = require('uuid').v4
 const moment = require('moment')
 const BookSchema = require('../schemas').Book
+const RateModel = require('../models/rate').RateModel
 const CategoryModel = require('../models/category').CategoryModel
 const BookValidation = require('../validations').Book
 const { IS_AVAILABLE, PUBLISH_STATUS, ERROR } = require('../constant')
@@ -15,6 +16,7 @@ class BookModel {
     this.description = params.description
     this.category_id = params.category_id
     this.rate = params.rate
+    this.rated_users = params.rated_users
     this.publish_date = params.publish_date
     this.url = params.title
     this.is_available = params.is_available
@@ -64,11 +66,10 @@ class BookModel {
     const book_schema = BookSchema(book_payload)
     const book = await book_schema.save()
 
-    return { book: this.toModel(book) }
+    return { book: await this.arrageBookModel(book) }
   }
 
   static async update(params) {
-    console.log(params, 'aaaaaaaa')
     const error = BookValidation.update(params)
     if (error) return { error: { status: 400, message: error } }
 
@@ -102,7 +103,6 @@ class BookModel {
         author: params.author || book.author,
         description: params.description || book.description,
         category_id: params.category_id || book.category_id,
-        rate: params.rate || book.rate,
         publish_date: params.publish_date || book.publish_date,
         url: params.url || book.url,
         is_available:
@@ -115,7 +115,16 @@ class BookModel {
       { new: true }
     )
 
-    return this.toModel(updated_book)
+    return await this.arrageBookModel(updated_book)
+  }
+
+  static async arrageBookModel(params) {
+    const { rate, rated_users } = await RateModel.calculateRateByBookId(
+      params.book_id
+    )
+    const book = { ...params?._doc, rate, rated_users }
+
+    return this.toModel(book)
   }
 
   /***************************************************************************************************
@@ -125,26 +134,28 @@ class BookModel {
     const result = await BookSchema.find().sort({ created: -1 })
 
     const books = []
-    result.map((res) => {
-      books.push(this.toModel(res))
-    })
-
+    await Promise.all(
+      result.map(async (res) => {
+        books.push(await this.arrageBookModel(res))
+      })
+    )
     return books
   }
 
   static async _getById(book_id) {
     const book = await BookSchema.findOne({ book_id })
 
-    return this.toModel(book)
+    return book ? await this.arrageBookModel(book) : null
   }
 
   static async _searchByQuery(query) {
     const result = await BookSchema.find(query).sort({ created: -1 })
     const books = []
-    result.map((res) => {
-      books.push(this.toModel(res))
-    })
-
+    await Promise.all(
+      result.map(async (res) => {
+        books.push(await this.arrageBookModel(res))
+      })
+    )
     return books
   }
 
@@ -158,7 +169,6 @@ class BookModel {
       author: params.author,
       description: params.description,
       category_id: params.category_id,
-      rate: params.rate,
       publish_date: params.publish_date,
       url: params.url,
       is_available: IS_AVAILABLE.AVAILABLE,
@@ -180,7 +190,8 @@ class BookModel {
       author: params.author !== undefined ? params.author : null,
       description: params.description !== undefined ? params.description : null,
       category_id: params.category_id !== undefined ? params.category_id : null,
-      rate: params.rate !== undefined ? params.rate : null,
+      rate: params.rate !== undefined ? params.rate : 0,
+      rated_users: params.rated_users !== undefined ? params.rated_users : 0,
       publish_date:
         params.publish_date !== undefined ? params.publish_date : null,
       url: params.url !== undefined ? params.url : null,

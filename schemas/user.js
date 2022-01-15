@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const { AUTH_STATUS, USER_TYPE } = require('../constant')
 
 const UserSchema = new Schema({
   user_id: {
@@ -44,10 +45,17 @@ const UserSchema = new Schema({
   auth_status: {
     type: String,
     required: true,
+    enum: [AUTH_STATUS.NO_AUTH, AUTH_STATUS.AUTHED, AUTH_STATUS.SUSPENDED],
   },
   user_type: {
     type: String,
     required: true,
+    enum: [
+      USER_TYPE.USER,
+      USER_TYPE.PREMIUM_USER,
+      USER_TYPE.ADMIN,
+      USER_TYPE.SUPER_ADMIN,
+    ],
   },
   created: {
     type: Number,

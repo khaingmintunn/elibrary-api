@@ -10,7 +10,6 @@ class BookValidation {
       validator.isRequired('author', params.author),
       validator.isRequired('description', params.description),
       validator.isRequired('category_id', params.category_id),
-      validator.isRequired('rate', params.rate),
       validator.isRequired('publish_date', params.publish_date),
       validator.isRequired('status', params.status),
       validator.validateLength('title', params.title, 2, 100),
@@ -40,13 +39,6 @@ class BookValidation {
       validator.validateLength('title', params.title, 2, 100),
       validator.validateLength('author', params.author, 2, 100),
       validator.validateLength('description', params.description, 2, 1500),
-      validator.isInclude('rate', params.rate, [
-        RATE.ONE,
-        RATE.TWO,
-        RATE.THREE,
-        RATE.FOUR,
-        RATE.FIVE,
-      ]),
       validator.isNumber('publish_date', params.publish_date),
       validator.isInclude('status', params.status, [
         PUBLISH_STATUS.PUBLISH,

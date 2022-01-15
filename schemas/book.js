@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const { RATE, PUBLISH_STATUS } = require('../constant')
 const Schema = mongoose.Schema
 
 const BookSchema = new Schema({
@@ -25,10 +26,6 @@ const BookSchema = new Schema({
     type: String,
     required: true,
   },
-  rate: {
-    type: Number,
-    required: true,
-  },
   publish_date: {
     type: Number,
     required: true,
@@ -44,6 +41,7 @@ const BookSchema = new Schema({
   status: {
     type: String,
     required: true,
+    enum: [PUBLISH_STATUS.DRAFT, PUBLISH_STATUS.PUBLISH],
   },
   user_id: {
     type: String,

@@ -18,6 +18,7 @@ module.exports.ERROR = {
   CATEGORY: 'An error occurred during retrieving category process.',
   BOOK_CREATE: 'An error occurred during creating book process.',
   CATEGORY_CREATE: 'An error occurred during creating category process',
+  RATE: 'An error occurred during rating process.',
   BOOK_UPDATE: 'An error occurred dring updating book process.',
   CATEGORY_UPDATE: 'An error occurred during updating category process',
   BOOK_DELETE: 'An error occurred during deleting book process.',
@@ -76,6 +77,7 @@ module.exports.PUBLISH_STATUS = {
 }
 
 module.exports.RATE = {
+  ZERO: 0,
   ONE: 1,
   TWO: 2,
   THREE: 3,

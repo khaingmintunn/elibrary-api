@@ -35,7 +35,10 @@ exports.AUTH_USER = async (req, res, next) => {
     return res.status(401).send({ message: ERROR.NO_AUTH })
   }
 
-  if (user?.user_type !== USER_TYPE.USER) {
+  if (
+    user?.user_type !== USER_TYPE.USER &&
+    user?.user_type !== USER_TYPE.PREMIUM_USER
+  ) {
     return res.status(405).send({ message: ERROR.PERMISSION })
   }
   req.body.current_user = user
